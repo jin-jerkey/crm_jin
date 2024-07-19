@@ -1,0 +1,88 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper descend" style="height: 95vh;">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Liste de rappels</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">NVA</a></li>
+                        <li class="breadcrumb-item active">Liste de rappels</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+
+    <div class="container-fluid  m-4 d-flex">
+        <!-- TO DO List -->
+        <div class="card col-sm-4 p-4 ">
+            <div class="card-header">
+                <h3 class="card-title text-center">
+                    <i class="ion ion-clipboard mr-1"></i>
+                    
+                </h3>
+
+            </div>
+           
+
+            <form (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="content">Contenu:</label>
+                    <textarea type="text" id="content" class="form-control" [(ngModel)]="task.content" name="content"
+                        required placeholder="Discuter avec les clients..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="time">Heure:</label>
+                    <input type="time" id="time" class="form-control" [(ngModel)]="task.time" name="time" required>
+                </div>
+                <div class="form-group">
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" class="form-control" [(ngModel)]="task.date" name="date" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Ajouter</button>
+            </form>
+
+            
+        </div>
+        <div class="col-sm-7">
+            <p>Liste de rappels:</p>
+        
+            <div class="card-body  bg-dark">
+                <ul class="todo-list" data-widget="todo-list" *ngIf="tasks !=null">
+                    <li *ngFor="let task of tasks; let i = index">
+                        <!-- drag handle -->
+                        <span class="handle">
+                            <i class="fas fa-ellipsis-v"></i>
+                            <i class="fas fa-ellipsis-v"></i>
+                        </span>
+                        <!-- checkbox -->
+                        <div class="icheck-primary d-inline ml-2">
+                            <input type="checkbox" value="" name="todo1" id="todoCheck1">
+                            <label for="todoCheck1"></label>
+                        </div>
+                        <!-- todo text -->
+                        <span class="text">  {{ task.content }}</span>
+                        <!-- Emphasis label -->
+                        <small class="badge badge-warning"><i class="far fa-calendar"></i> {{ task.date }}</small>
+                        <small class="badge badge-danger"><i class="far fa-clock"></i> {{ task.time }}</small>
+                        <!-- General tools such as edit or delete-->
+                        <div class="tools">
+                            <button (click)="deleteTodo(i)"><i class="fas fa-trash text-danger"></i></button>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="todo-list" data-widget="todo-list" *ngIf="!tasks || tasks.length === 0">
+                    <span class="text-center" style="justify-content: center; font-size: 16px;">" Aucune rappel disponible.
+                        </span>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <!-- /.card -->
+</div>

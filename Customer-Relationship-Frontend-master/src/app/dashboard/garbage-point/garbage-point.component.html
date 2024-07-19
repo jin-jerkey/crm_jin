@@ -1,0 +1,53 @@
+<div class="content-wrapper descend">
+    <!-- Content Header (Page header) -->
+    <div class="content-header ">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h2>Garbage Point Management</h2>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Garbage Points</li>
+
+                    </ol>
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <div class="col-sm-2 mb-3 mr-4 float-sm-right mb-4" *ngIf="roleAdmin">
+            <button class="btn btn-success" style="float: right;" routerLink="/dashboard/garbageManagement">Add Garbage
+                Point</button>
+        </div>
+        <section class="content" style="margin: 7%;">
+        </section>
+    </div>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="card" *ngFor="let gpt of allGarbagePts">
+                <div class="bg-warning">
+                    <i class="fas fa-trash"></i>
+                </div>
+                <h1 class="pt-3">{{gpt.name}}</h1>
+                <p class="title">{{gpt.town}}</p>
+                <p>Created Date: {{gpt.createdOn}}</p>
+
+                <div class="progress">
+                    <div class="progress-bar" aria-valuemin="0" role="progressbar" [style.width.%]="gpt.wasteLevels" [ngClass]="{
+                        'bg-success': gpt.wasteLevels >= 0 && gpt.wasteLevels < 50,
+                        'bg-warning': gpt.wasteLevels >= 50 && gpt.wasteLevels < 90,
+                        'bg-danger': gpt.wasteLevels >= 90
+                      }">
+                      <span class="sr-only" *ngIf="gpt.wasteLevels>0">{{ gpt.wasteLevels }}% Complete</span>{{ gpt.wasteLevels }}%
+                    </div>
+                </div>
+                <div id="map" style="height: 50px;"></div>
+                <p><code>Garbage Level</code></p>
+                <p class="d-flex" *ngIf="roleAdmin">
+                    <button class="mr-1" [routerLink]="['../gpt', gpt.id ]">update</button>
+                    <button (click)="deleteProperty(gpt.id)">Delete</button>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

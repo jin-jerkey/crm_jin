@@ -1,0 +1,71 @@
+<div class="content-wrapper descend" style="height: 80vh;">
+    <div class="content-header">
+        <div class="container">
+            <div class="row ">
+                <div>
+
+                </div>
+                <h1 class="m-0 text-dark">
+                    <i class="fas fa-arrow-left fa-x mr-2" routerLink="/dashboard/garbagept"></i>
+                </h1>
+
+                <div class="container text-center">
+                    <ol class="breadcrumb">
+                        <h1 class="m-0 text-dark">
+                            <li class="breadcrumb-item active">Garbage Registration Form</li>
+                        </h1>
+                    </ol>
+                </div><!-- /.col -->
+
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+
+    </div>
+
+    <div class="card-body  ">
+        <form #userForm="ngForm" enctype="multipart/form-data">
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <div class="form-group">
+                        <input type="text" id="username" [(ngModel)]="garbagept.name" name="username"
+                            class="form-control" required />
+                        <label class="form-label" for="username">Garbage Point Name</label>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="form-group">
+                        <input type="text" id="firstname" [(ngModel)]="garbagept.town" name="firstname"
+                            class="form-control" required />
+                        <label class="form-label" for="firstname">Town</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <div class="form-group">
+                        <input type="text" id="lastname" [(ngModel)]="garbagept.lon" name="lastname"
+                            class="form-control" required />
+                        <label class="form-label" for="lastname">Longitude</label>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="form-group">
+                        <input type="email" id="email" [(ngModel)]="garbagept.lat" name="email" class="form-control"
+                            required />
+                        <label class="form-label" for="email">Latitude</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+               
+                <div class="container-fluid">
+                    <div class=" d-flex" style="float: right;">
+                        <button type="button" class="btn btn-danger m-1" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-success m-1" (click)="saveUser()">{{actionBtn}}</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,203 @@
+<div class="content-wrapper descend" style="height: 100vh;">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Profil Utilisateur</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">CRM</a></li>
+            <li class="breadcrumb-item active">Profil Utilisateur</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4">
+          <!-- Profile Image -->
+           <div class="card card-primary card-outline">
+                        <div class="card-body box-profile">
+                            <div class="text-center">
+
+
+                                <div class="position-relative">
+                                    <label for="imageInput" class="profile-image">
+                                        <div class=" image d-flex">
+                                                <img *ngIf="imageUrl"
+                                                [src]="imageUrl"
+                                                class="img-circle elevation-3"
+                                                alt="User profile picture"
+                                                style="width: 150px; height: 150px;">
+                                            <img *ngIf="!imageUrl"
+                                                src="https://th.bing.com/th/id/OIP.yOis-r7BEqpfzx6Od63TLQAAAA?w=470&h=500&rs=1&pid=ImgDetMain"
+                                                alt="Profile Picture" width="150" style="border-radius: 50%;">
+                                            <span class="pencil-icon">
+                                                <i class="fas fa-pencil"></i>
+                                            </span>
+                                        </div>
+                                    </label>
+
+                                </div>
+                                <label for="profileImage" style="align-items: start;">Photo de profil:</label>
+
+                            </div>
+
+                            <h3 class="profile-username text-center">{{content}}</h3>
+
+                            <p class="text-muted text-center">{{userData.title}}</p>
+
+                            <strong><i class="fas fa-user mr-1"></i> Nom </strong>
+                            <a class="float-right"> {{userData.firstname| capitalize}}</a>
+                            <hr>
+                            <strong><i class="fas fa-user mr-1"></i> Prénom </strong>
+                            <a class="float-right"> {{userData.lastname| capitalize}}</a>
+                            <hr>
+                            <strong><i class="fas fa-envelope mr-1"></i> Email </strong>
+                            <a class="float-right"> {{userData.email}}</a>
+                            <hr>
+                            <strong><i class="fas fa-phone mr-1"></i> Téléphone </strong>
+                            <a class="float-right"> {{userData.phone}}</a>
+                            <hr>
+                            <strong><i class="fas fa-map-marker-alt mr-1"></i> Adresse </strong>
+                            <a class="float-right">{{userData.address}}</a>
+                            <hr>
+                            <strong><i class="fas fa-calendar mr-1"></i> Membre depuis</strong>
+                            <a class="float-right"> {{userData.joinedDate | date:'dd-MM-yyyy'}}</a>
+                            <hr>
+
+                        </div>
+                        <!-- /.card-body -->
+                        <!-- /.card -->
+                    </div>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-6 ">
+          <div class="card">
+            <div class="card-body">
+
+              <div class="tab-pane" id="settings">
+                <div class="form-group">
+                  <div class="text-center">
+                    <div class="position-relative">
+
+                    </div>
+                  </div>
+                </div>
+                <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                  <div class="container d-flex" style="display: flex;justify-content: center;">
+                  <img *ngIf="!selectedImage && !selectedImagePreview?.url" class="profile-picture" src="https://th.bing.com/th/id/OIP.yOis-r7BEqpfzx6Od63TLQAAAA?w=470&h=500&rs=1&pid=ImgDetMain" alt="Default Image" (click)="openFileDialog()" style="width: 150px; height: 150px;cursor: pointer;"> <img *ngIf="selectedImage" [src]="selectedImagePreview" style="width: 150px; height: 150px; border-radius: 50%;  cursor: pointer;" (click)="openFileDialog()"> 
+                  <img *ngIf="selectedImagePreview?.url"
+                  [src]="selectedImagePreview.url"
+                  class="img-circle elevation-3 profile-picture"
+                  alt="User profile picture"
+                  style="width: 150px; height: 150px; cursor: pointer; " (click)="openFileDialog()">
+                </div>
+                  <div class="d-flex" style="flex-wrap: wrap;">
+                    <label for="profileImage">Photo de profil:</label>
+
+                    <div class="form-group col-sm-12">
+                      <label for="firstname">Nom*</label>
+                      <input type="text" class="form-control" name="firstname" [(ngModel)]="form.firstname" required
+                        minlength="3" maxlength="20" #firstname="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && firstname.errors }" />
+                      <div class="invalid-feedback" *ngIf="firstname.errors && f.submitted">
+                        <div *ngIf="firstname.errors['required']">Ce champ est requis</div>
+                        <div *ngIf="firstname.errors['minlength']">
+                          Le nom doit comporter au moins 3 caractères
+                        </div>
+                        <div *ngIf="firstname.errors['maxlength']">
+                          Le nom ne doit pas dépasser 20 caractères
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                      <label for="lastname">Prénom*</label>
+                      <input type="text" class="form-control" name="lastname" [(ngModel)]="form.lastname" required
+                        minlength="3" maxlength="20" #lastname="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && lastname.errors }" />
+                      <div class="invalid-feedback" *ngIf="lastname.errors && f.submitted">
+                        <div *ngIf="lastname.errors['required']">Ce champ est requis</div>
+                        <div *ngIf="lastname.errors['minlength']">
+                          Le prénom doit comporter au moins 3 caractères
+                        </div>
+                        <div *ngIf="lastname.errors['maxlength']">
+                          Le prénom ne doit pas dépasser 20 caractères
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex" style="flex-wrap: wrap;">
+                    <div class="form-group col-sm-12">
+                      <label for="phone">Téléphone*</label>
+                      <input type="number" class="form-control" name="phone" [(ngModel)]="form.phone" required
+                        minlength="9" maxlength="9" #phone="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && phone.errors }" />
+                      <div class="invalid-feedback" *ngIf="phone.errors && f.submitted">
+                        <div *ngIf="phone.errors['required']">Ce champ est requis</div>
+                        <div *ngIf="phone.errors['minlength']">
+                          Le numéro de téléphone doit comporter au moins 9 chiffres
+                        </div>
+                        <div *ngIf="phone.errors['maxlength']">
+                          Le numéro de téléphone ne doit pas dépasser 9 chiffres
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class="form-group col-sm-12">
+                      <label for="email">Email*</label>
+                      <input type="email" class="form-control" name="email" [(ngModel)]="form.email" required email
+                        #email="ngModel" [ngClass]="{ 'is-invalid': f.submitted && email.errors }" />
+                      <div class="invalid-feedback" *ngIf="email.errors && f.submitted">
+                        <div *ngIf="email.errors['required']">Ce champ est requis</div>
+                        <div *ngIf="email.errors['email']">
+                          L'adresse e-mail doit être une adresse e-mail valide
+                        </div>
+                      </div>
+                    </div> -->
+                    <div class="form-group col-sm-12">
+                      <label for="address">Adresse*</label>
+                      <input type="text" class="form-control" name="address" [(ngModel)]="form.address" required
+                        minlength="3" maxlength="30" #address="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && address.errors }" />
+                      <div class="invalid-feedback" *ngIf="address.errors && f.submitted">
+                        <div *ngIf="address.errors['required']">Ce champ est requis</div>
+                        <div *ngIf="address.errors['minlength']">
+                          L'adresse doit comporter au moins 3 caractères
+                        </div>
+                        <div *ngIf="address.errors['maxlength']">
+                          L'adresse ne doit pas dépasser 30 caractères
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="pt-4"></div>
+                  <div class="form-group">
+                    <button class="btn btn-danger btn-block">Enregistrer</button>
+                  </div>
+
+                  <!-- <div class="alert alert-warning" *ngIf="f.submitted && isUpdateFailed">
+                      Update failed!<br />{{ errorMessage }}
+                    </div> -->
+
+                </form>
+
+              </div>
+              <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+          </div><!-- /.card-body -->
+        </div>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

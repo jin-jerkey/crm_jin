@@ -1,0 +1,26 @@
+
+.fa-file-pdf{
+    color: #ff5733; /* Set the desired color for the PDF icon */
+  }
+  
+  .fa-file-excel {
+    color:#4caf50; /* Set the desired color for the Excel icon */
+  }
+  
+  .fa-print {
+    color: #1e90ff ; /* Set the desired color for the Print icon */
+  }
+  .fa-arrow-left{
+  
+    font-weight: bolder;
+    cursor: pointer;
+    color: green;
+}
+@media print {
+  .hide-actions {
+    display: none !important;
+  }
+}
+.no-print {
+  display: block !important;
+}

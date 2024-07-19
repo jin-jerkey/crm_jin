@@ -1,0 +1,97 @@
+<div class="content-wrapper descend">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row ">
+                <div>
+
+                </div>
+                <h1 class="m-0 text-dark">
+                    <i class="fas fa-arrow-left fa-x mr-2" routerLink="/dashboard/userList"></i>
+                </h1>
+
+                <div class="container text-center">
+                    <ol class="breadcrumb">
+                        <h1 class="m-0 text-dark">
+                            <li class="breadcrumb-item active">Formulaire d’inscription des employés</li>
+                        </h1>
+                    </ol>
+                </div><!-- /.col -->
+
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+
+    </div>
+
+    <div class="card-body  ">
+        <form #userForm="ngForm" enctype="multipart/form-data">
+
+            <div class="row">
+                
+                <div class="col-md-6 mb-3">
+                    <div class="form-group">
+                        <input type="text" id="firstname" [(ngModel)]="users.firstname" name="firstname"
+                            class="form-control" required />
+                        <label class="form-label" for="firstname">Prénom</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <div class="form-group">
+                        <input type="text" id="lastname" [(ngModel)]="users.lastname" name="lastname"
+                            class="form-control" required />
+                        <label class="form-label" for="lastname">Nom</label>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="form-group">
+                        <input type="email" id="email" [(ngModel)]="users.email" name="email" class="form-control"
+                            required />
+                        <label class="form-label" for="email">Email</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+               
+                <div class="col-md-6 mb-2">
+                    <div class="form-group">
+                        <input type="text" id="address" [(ngModel)]="users.address" name="address" class="form-control"
+                            required />
+                        <label class="form-label" for="address">Adresse</label>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="form-group">
+                        <input type="number" id="phone" [(ngModel)]="users.phone" name="phone" class="form-control"
+                            required />
+                        <label class="form-label" for="phone">Téléphone</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3" *ngIf="!read">
+                    <div class="form-group">
+                        <input type="password" id="password" [(ngModel)]="users.password" name="password"
+                            class="form-control" required="true" />
+                        <label class="form-label" for="password">Mot de passe</label>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="form-group">
+                        <select id="role" [(ngModel)]="users.roles" name="role" class="form-control" required="true">
+                            <option value="" disabled>Sélectionner un rôle</option>
+                            <option *ngFor="let rol of role" [value]="[rol]">{{rol}}</option>
+                        </select>
+                        <label class="form-label" for="role">Rôle de l’employé</label>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class=" d-flex" style="float: right;">
+                        <button type="button" class="btn btn-danger m-1" data-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn btn-success m-1" (click)="saveUser()">{{actionBtn}}</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

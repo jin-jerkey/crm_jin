@@ -1,0 +1,209 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper descend">
+  <!-- Content Header (Page header) -->
+  <div class="content-header ">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0 text-dark">Tableau de bord</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Acceuil</a></li>
+            <li class="breadcrumb-item active">Tableau de bord</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <!-- Info boxes -->
+      <div class="col-sm-12 d-flex" *ngIf="showAdminBoard">
+        <div class=" col-sm-4">
+          <div class="info-box">
+            <span class="info-box-icon bg-info elevation-1"><i class="fas fa-users"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Total Admins</span>
+              <span class="info-box-number">
+                {{countAdmin}}
+                <small></small>
+              </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- fix for small devices only -->
+        <div class="clearfix hidden-md-up"></div>
+
+        <div class="col-sm-4">
+          <div class="info-box mb-3">
+            <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Total Employees</span>
+              <span class="info-box-number">{{countEmployee}}</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-4">
+          <div class="info-box mb-3">
+            <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Total Clients</span>
+              <span class="info-box-number">{{countClient}}</span>
+
+
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+      <div class="col-sm-12 d-flex" *ngIf="showEmployeeBoard">
+        <div class=" col-sm-3">
+          <div class="info-box">
+            <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-circle"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Tâche Non démarré</span>
+              <span class="info-box-number">
+                {{taskNotStarted? taskNotStarted:'0'}}
+                <small></small>
+              </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- fix for small devices only -->
+        <div class="clearfix hidden-md-up"></div>
+
+        <div class="col-sm-3">
+          <div class="info-box mb-3">
+            <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-sync"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Tâche en cours</span>
+              <span class="info-box-number">{{taskInProgress? taskInProgress:'0'}}</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-3">
+          <div class="info-box mb-3">
+            <span class="info-box-icon bg-success elevation-1"><i class="fas fa-check"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Tâche Terminé</span>
+              <span class="info-box-number">{{taskCompleted? taskCompleted:'0'}}</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-3">
+          <div class="info-box mb-3">
+            <span class="info-box-icon bg-info elevation-1"><i class="fas fa-list"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Nombre de tâches</span>
+              <span class="info-box-number">{{taskNumber? taskNumber:'0'}}</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <div class="col-sm-12 m-2">
+
+        <div class="col-sm-12 d-flex" *ngIf="showUserBoard">
+          <div class=" col-sm-4">
+            <div class="info-box">
+              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-hourglass-half"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Commandes en attente</span>
+                <span class="info-box-number">
+                  {{commandsPending}}
+                  <small></small>
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- fix for small devices only -->
+          <div class="clearfix hidden-md-up"></div>
+
+          <div class="col-sm-4">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-check"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Commandes Completé</span>
+                <span class="info-box-number">{{commandsCompleted}}</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-sm-4">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-shopping-cart"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Total des Commandes</span>
+                <span class="info-box-number">{{commandsTotal}}</span>
+
+
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-6 m-2" *ngIf="showUserBoard">
+          <div class="card card-danger">
+            <div class="card-header">
+              <h3 class="card-title">Diagramme à barres</h3>
+
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-body" *ngIf="commandsData">
+              <app-userbyid-barchart *ngIf="commandsData" [commandsData]="commandsData"></app-userbyid-barchart>
+            </div>
+          </div>
+        </div>
+      </div>
+      <app-content-task *ngIf="showEmployeeBoard" (dataEvent)="receiveData($event)"></app-content-task>
+
+    </div>
+
+  </section>
+
+</div>

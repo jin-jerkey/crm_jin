@@ -1,0 +1,120 @@
+<div class="content-wrapper" style="height: 95vh;">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                  <h2>Clients</h2>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">CRM</a></li>
+                        <li class="breadcrumb-item active">Clients</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <section class="content">
+      <div class="container-fluid">
+          <h4 class="text-center mt-4">Rechercher</h4>
+          <div class="row">
+              <div class="col-md-8 offset-md-2">
+                  <form action="simple-results.html">
+                      <div class="input-group">
+                          <input #input type="search" (keyup)="applyFilter($event)" class="form-control form-control-lg" placeholder="Ex. Angel">
+                          <div class="input-group-append">
+                              <button type="submit" class="btn btn-lg btn-default">
+                                  <i class="fa fa-search"></i>
+                              </button>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </section>
+  <div class="container mt-4">
+    <div class="row">
+
+      <div class="col-md-12 mb-3 mr-4">
+       <!-- <button class="btn btn-primary" style="float: right;" routerLink="/dashboard/adddep">Add Department</button> -->
+      </div>
+      <div class="btn-group col-md-3 mb-2" role="group" aria-label="Basic example" style="float: right;margin-right: 3%;">
+        <button type="button" class="btn btn-dark" (click)="generateReport()"><i class="fas fa-file-pdf"></i> pdf</button>
+        <button type="button" class="btn btn-dark" (click)="generateExcel()"><i class="fas fa-file-excel" ></i> excel</button>
+        <button type="button" class="btn btn-dark" (click)="print()"><i class="fas fa-print" ></i> imprimer</button>
+
+    </div>
+
+    </div>
+    <!-- User List Table -->
+    <div class="container col-md-12">
+
+
+      
+      <div class="mat-elevation-z8"  #reportContent>
+        
+        <table mat-table [dataSource]="dataSource" matSort >
+            
+        
+              <ng-container matColumnDef="firstname">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom </th>
+                <td mat-cell *matCellDef="let row"> {{row.firstname |capitalize}} </td>
+              </ng-container>
+              <ng-container matColumnDef="lastname">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Prénom </th>
+                <td mat-cell *matCellDef="let row"> {{row.lastname | capitalize}} </td>
+              </ng-container>
+              <ng-container matColumnDef="phone">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Téléphone </th>
+                <td mat-cell *matCellDef="let row"> {{row.phone}} </td>
+              </ng-container>
+
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+            <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="address">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Adresse </th>
+            <td mat-cell *matCellDef="let row"> {{row.address}} </td>
+          </ng-container>
+          
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+
+            <td mat-cell *matCellDef="let row"  [class.hide-actions]="printing">
+              <button mat-icon-button color="success" [routerLink]="['../viewclient', row.id ]">
+                <mat-icon>visibility</mat-icon>
+              </button>
+              <button mat-icon-button color="primary" [routerLink]="['../client', row.id ]">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" (click)="deleteUser(row.id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+             
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+          </tr>
+        </table>
+
+        <mat-paginator class="no-print matPaginator" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users" *ngIf="showPagination"></mat-paginator>
+      </div>
+    </div>
+  </div>
+
+</div>
+<script>
+    $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+  </script>

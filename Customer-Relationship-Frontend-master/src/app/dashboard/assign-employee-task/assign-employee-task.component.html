@@ -1,0 +1,90 @@
+<div class="content-wrapper descend" style="height: 95vh;">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Tâches</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">NVA</a></li>
+                        <li class="breadcrumb-item active">tâches</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+
+    <div class="container-fluid  mt-4 d-flex justify-content-center">
+        <!-- TO DO List -->
+        <div class="card col-sm-8 p-4 ">
+            <div class="card-header justify-content-center text-center">
+                <h3 class="card-title text-center">
+                    <i class="ion ion-clipboard mr-1" style="text-align: center; font-size: 28px;font-weight: bolder;">Assigner des tâches</i>
+
+                </h3>
+
+            </div>
+
+
+            <form (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="content">Contenu:</label>
+                    <textarea type="text" id="content" class="form-control" [(ngModel)]="task.description"
+                        name="content" required placeholder="Discuter avec les clients..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="time">Responsable:</label>
+                    <input type="text" spellcheck="false" placeholder="Rechercher un employé" class="form-control focus capitalize" [formControl]="control"
+                        [matAutocomplete]="auto" class="example-input"/>
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let street of filteredStreets | async" [value]="street">
+                            {{street | capitalize}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </div>
+                <div class="form-group">
+                    <label for="date">Pour le:</label>
+                    <input type="date" id="date" class="form-control" [(ngModel)]="task.date_limit" name="date"
+                        required>
+                </div>
+                <button type="submit" class="btn btn-primary">Assigner</button>
+            </form>
+
+
+        </div>
+        <!-- <div class="col-sm-7">
+            <p>Liste des tâches:</p>
+
+            <div class="card-body  bg-dark">
+                <ul class="todo-list" data-widget="todo-list">
+                    <li *ngFor="let task of tasks; let i = index">
+                        <span class="handle">
+                            <i class="fas fa-ellipsis-v"></i>
+                            <i class="fas fa-ellipsis-v"></i>
+                        </span>
+                        <div class="icheck-primary d-inline ml-2">
+                            <input type="checkbox" value="" name="todo1" id="todoCheck1">
+                            <label for="todoCheck1"></label>
+                        </div>
+                        <span class="text"> {{ task.content }}</span>
+                        <small class="badge badge-warning"><i class="far fa-calendar"></i> {{ task.date }}</small>
+                        <small class="badge badge-danger"><i class="far fa-clock"></i> {{ task.time }}</small>
+                        <div class="tools">
+                            <button (click)="deleteTodo(i)"><i class="fas fa-trash text-danger"></i></button>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="todo-list" data-widget="todo-list" *ngIf="!tasks || tasks.length === 0">
+                    <span class="text-center" style="justify-content: center; font-size: 16px;">" Aucune tâche
+                        disponible.
+                    </span>
+                </ul>
+            </div>
+
+        </div> -->
+    </div>
+    <!-- /.card -->
+</div> 

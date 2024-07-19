@@ -1,0 +1,85 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper descend">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">UserManagement</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">UserManagement</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        UserManagement
+        <!-- /.row -->
+      </div><!--/. container-fluid -->
+   
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <h1>jsGrid</h1>
+              </div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item active">jsGrid</li>
+                </ol>
+              </div>
+            </div>
+          </div><!-- /.container-fluid -->
+    
+        <!-- Main content -->
+        <section class="content">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">jsGrid</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">street</th>
+                    <th scope="col">latitude</th>
+                    <th scope="col">company name</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let user of users">
+                    <td>{{user.id}}</td>
+                    <td>{{user.username}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.address.street}}</td>
+                    <td>{{user.address.geo.lat}}</td>
+                    <td>{{user.company.name}}</td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+                        </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </section>
+        </section>
+        <!-- /.content -->
+      </section>
+ 
+    <!-- /.content -->
+  </div>    

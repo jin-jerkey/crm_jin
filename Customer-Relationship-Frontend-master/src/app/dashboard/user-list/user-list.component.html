@@ -1,0 +1,107 @@
+<div class="content-wrapper descend">
+  <!-- Content Header (Page header) -->
+  <div class="content-header ">
+      <div class="container-fluid">
+          <div class="row mb-2">
+              <div class="col-sm-6">
+                <h2>Gestion des employés</h2>
+              </div><!-- /.col -->
+              <div class="col-sm-6">
+                  <ol class="breadcrumb float-sm-right">
+                      <li class="breadcrumb-item"><a href="#">Acceuil</a></li>
+                      <li class="breadcrumb-item active">employés</li>
+                  </ol>
+              </div><!-- /.col -->
+          </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+  </div>
+  <section class="content">
+    <div class="container-fluid">
+        <h2 class="text-center display-4">Rechercher</h2>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <form action="simple-results.html">
+                    <div class="input-group">
+                        <input #input type="search" (keyup)="applyFilter($event)" class="form-control form-control-lg" placeholder="Ex. Angel">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-lg btn-default">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container mt-4">
+  <div class="row">
+
+    <div class="col-md-12 mb-3 mr-4">
+     <button class="btn btn-primary" style="float: right;" routerLink="/dashboard/employee">Ajouter un employé</button>
+    </div>
+
+  </div>
+  <!-- User List Table -->
+  <div class="container col-md-12">
+    <div class="mat-elevation-z8"  #reportContent>
+      
+      <table mat-table [dataSource]="dataSource" matSort >
+       
+        <ng-container matColumnDef="firstname">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Prénom </th>
+          <td mat-cell *matCellDef="let row"> {{row.firstname}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="lastname">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom </th>
+          <td mat-cell *matCellDef="let row"> {{row.lastname}} </td>
+        </ng-container>
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+          <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="phone">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Téléphone </th>
+          <td mat-cell *matCellDef="let row"> {{row.phone}} </td>
+        </ng-container>
+        <ng-container matColumnDef="address">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Adresse </th>
+          <td mat-cell *matCellDef="let row"> {{row.address}} </td>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+
+          <td mat-cell *matCellDef="let row" >
+            <button mat-icon-button color="success" [routerLink]="['../viewemp', row.id ]">
+              <mat-icon>visibility</mat-icon>
+            </button>
+            <button mat-icon-button color="primary" [routerLink]="['../emp', row.id ]">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="deleteProperty(row.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+           
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+      </table>
+
+      <mat-paginator class="no-print matPaginator" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+    </div>
+  </div>
+</div>
+</div>
+<script>
+  $(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+  });
+</script>

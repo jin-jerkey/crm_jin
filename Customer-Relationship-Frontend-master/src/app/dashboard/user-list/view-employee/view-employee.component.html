@@ -1,0 +1,45 @@
+<div class="content-wrapper descend">
+    <!-- Content Header (Page header) -->
+    <div class="content-header mt-4">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div>
+                    
+                </div>
+                <h1 class="m-0 text-dark">
+                    <i class="fas fa-arrow-left fa-x mr-2" routerLink="/dashboard/userList"></i>
+                </h1>
+             
+                <div class="col-sm-6 pt-4">
+                    <ol class="breadcrumb float-sm-right ">
+                        <h1 class="m-0 text-dark"> <li class="breadcrumb-item active">Informations sur l’employé</li></h1>
+                    </ol>
+                </div><!-- /.col -->
+               
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+        
+    </div>
+
+    <div class="container  card" >
+        <div class="container card-body">
+            <div class="row" #reportContent>
+                <div class="col" style="line-height: 2;">
+                    <div class="col-md-6 mb-4">
+                        <!-- Left column -->
+                        <h1 style="font-weight: bolder;">Informations sur l’utilisateur</h1>
+                        <p><strong>Nom d’utilisateur:</strong> <span class="float-md-right">{{ userData.username}}</span> </p>
+                        <p><strong>Prénom:</strong> <span class="float-md-right">{{ userData.firstname |uppercase}}</span></p>
+                        <p><strong>Nom:</strong> <span class="float-md-right">{{ userData.lastname |capitalize}}</span></p>
+                        <p><strong>Email:</strong> <span class="float-md-right">{{ userData.email }}</span></p>
+
+                        <p><strong>Adresse:</strong> <span class="float-md-right">{{ userData.address |capitalize}}</span></p>
+                        <p><strong>Numéro de téléphone:</strong><span class="float-md-right"> {{ userData.phone }}</span></p>
+                        <!-- Add more fields as needed -->
+                    </div>
+               <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

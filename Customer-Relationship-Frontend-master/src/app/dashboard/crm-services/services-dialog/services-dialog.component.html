@@ -1,0 +1,29 @@
+<div class="mat-dialog-container" style="background-color: white">
+  <h1 mat-dialog-title style="text-align: center;">Formulaire de demande de service</h1>
+  <div mat-dialog-content class="mat-dialog-content">
+    <mat-form-field class="mat-form-field" appearance="fill" cdkFocusInitial>
+      <mat-label>Service sélectionné</mat-label>
+      <input matInput readonly="true" [(ngModel)]="data.title">
+    </mat-form-field>
+    <mat-form-field class="mat-form-field" appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput rows="5" [(ngModel)]="data.description"></textarea>
+    </mat-form-field>
+    <mat-form-field class="mat-form-field" appearance="fill">
+      <mat-label>Adresse</mat-label>
+      <input matInput type="text" [(ngModel)]="data.address">
+    </mat-form-field>
+    <mat-form-field class="mat-form-field" appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" [(ngModel)]="data.email">
+    </mat-form-field>
+    <mat-form-field class="mat-form-field" appearance="fill">
+      <mat-label>Tel</mat-label>
+      <input matInput type="tel" [(ngModel)]="data.phone">
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions style="float: right; padding: 10px;">
+    <button mat-flat-button color="warn" (click)="onNoClick()">Annuler</button>
+    <button mat-flat-button color="primary" style="border:none" [mat-dialog-close]="{ title: data.title, description: data.description, address: data.address,email:data.email,phone:data.phone }" >Envoyer</button>
+  </div>
+</div>

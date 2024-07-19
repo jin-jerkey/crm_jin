@@ -1,0 +1,11 @@
+.mat-dialog-container {
+    width: 600px; /* Adjust the width as needed */
+    height: 600px; /* Adjust the height as needed */
+  }
+  .mat-dialog-content{
+    height: 500px; /* Adjust the height as needed */
+
+  }
+  .mat-form-field {
+    width: calc(100% - 12px); /* Set the width of the form field, subtracting padding */
+  }

@@ -1,0 +1,64 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper descend">
+    <!-- Content Header (Page header) -->
+    <div class="content-header ">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Services</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">service</a></li>
+                        <li class="breadcrumb-item active">Services</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Info boxes -->
+            <div class="col-sm-12 d-flex">
+                <div class=" col-sm-12">
+                    <div class="info-box" style="display: flex;justify-content: center;align-items: center;">
+                        <!-- /.info-box-content -->
+                        <h5  style="text-align: center;">
+                            Explorez notre liste de services disponibles et découvrez les différentes options à votre disposition                        </h5>
+
+                    </div>
+                    
+                </div>
+                <!-- fix for small devices only -->
+                <div class="clearfix hidden-md-up"></div>
+
+           
+            </div>
+            <div class="col-sm-12">
+                <div class="row">
+
+                    <div class="col-sm-4" *ngFor="let service of services; let i=index">
+                        <div class="card text-center card-hover" (click)="openDialog(i, service.title)" style="height: 250px; cursor: pointer;">
+                          <div class="oval" style="display: flex; justify-content: center;">
+                            <i class="{{ service.icon }} card-img-top col-sm-4" style="font-size: 60px; padding-top: 5%; color: skyblue;"></i>
+                          </div>
+                          <div class="card-body" style="display: flex; justify-content: center;">
+                            <div class="text-center">
+                              <h3 class="text-center" style="font-size: 18px;">{{ service.title }}</h3>
+                              <span class="text-center" style="font-size: 15px;">{{ service.description }}</span>
+                              <button class="btn btn-primary get-service-btn" style="display: none;">Get Service</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+            </div>
+            </div>
+        </div>
+
+    </section>
+
+</div>
